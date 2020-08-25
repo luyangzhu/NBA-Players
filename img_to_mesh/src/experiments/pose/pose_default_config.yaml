@@ -1,0 +1,39 @@
+# general setting
+trainer_name: 
+exp_type: 
+base_log_dir:
+data_root_dir:
+log_name: 
+custom_postfix: ''
+checkpoint_path: 
+resume:
+gpu_id:
+vis_gpu:
+seed: 
+
+# demo setting
+demo:
+  img_dir: 
+  out_dir: 
+
+# data setting
+dataset:
+  lib: 
+  is_augmentation: 
+
+# model setting
+model:
+  lib: 
+
+# training setting
+training:
+  batch_size: 
+  valid_batch_size: 
+  nepochs: 
+  nepoch_decay: 
+  decay_gamma: 
+  log_interval: 
+  train_vis_iter: 
+  val_vis_iter: 
+  lr: 
+  num_workers:

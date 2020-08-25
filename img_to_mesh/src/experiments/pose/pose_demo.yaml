@@ -1,0 +1,34 @@
+# general setting
+trainer_name: pose
+exp_type: demo
+base_log_dir: ../log/pose
+log_name: pose-aug-bn64-lr0.002-3d2.0-hm10.0-bl0.5-ble20-3dm10.0-3dme10-cls0.2-dist0.4
+custom_postfix: ''
+checkpoint_path: ${base_log_dir}/${log_name}/ckpt/best_j3d_network.pth
+gpu_id: '0'
+vis_gpu: '0'
+seed: 
+
+# demo setting
+demo:
+  subdir: lbj_dunk
+  img_dir: ../../data/${demo.subdir}/img_crop
+  out_dir: ../../results/${demo.subdir}
+
+# data setting
+dataset:
+  joints_type: aug
+  inp_res: [256,256]
+  crop_res: [256,256]
+  hm_res: [64,64]
+  nParts: 
+
+
+# model setting
+model:
+  lib: pose_net
+  num_layers: 50
+  heads:
+    hm: 
+    j3d: 
+  nClasses: 2

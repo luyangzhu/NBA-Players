@@ -1,0 +1,41 @@
+# general setting
+trainer_name: mesh
+exp_type: demo
+data_root_dir: /mnt/projects/lyzhu/nba/data/release/training_data/mesh_release
+processed_verts_dir: ${data_root_dir}/release/kedrick
+base_log_dir: ../log/mesh
+log_name: mesh-aug-SpiralTLNetV2-IMG_AtlasNet_Humans-slr0.001-ilr0.0003-bn16-aug
+custom_postfix: ''
+checkpoint_dir: ${base_log_dir}/${log_name}/ckpt
+iden_ckpt_prefix: best
+skin_ckpt_prefix: best
+body_part_list: ['head', 'arm', 'shoes', 'shirt', 'pant', 'leg']
+gpu_id: '0'
+vis_gpu: '0'
+seed: 
+
+# demo setting
+demo:
+  subdir: lbj_dunk
+  inp_dir: ../../results/${demo.subdir}
+  out_dir: ../../results/${demo.subdir}
+
+# data setting
+dataset:
+  joints_type: aug 
+  nParts: 
+  is_augmentation: False
+  meshpackage: trimesh # mpi-mesh, trimesh
+  downsample_method: COMA_downsample
+  normalization: False
+  dummy_node: True
+
+# architecture setting
+model:
+  iden:
+    lib: atlasnet
+    name: IMG_AtlasNet_Humans
+  skin:
+    lib: human_net
+    name: HumanNetV2
+    sub_name: SpiralTLNetV2

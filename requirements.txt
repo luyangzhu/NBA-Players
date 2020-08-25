@@ -1,0 +1,7 @@
+PyYAML
+opencv-python
+tqdm
+matplotlib
+imgaug
+trimesh
+scikit-learn

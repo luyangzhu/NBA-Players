@@ -1,0 +1,62 @@
+# general setting
+trainer_name: mesh
+exp_type: train
+data_root_dir: /mnt/projects/lyzhu/nba/data/release/training_data/mesh_release
+processed_verts_dir: ${data_root_dir}/release/kedrick
+base_log_dir: ../log/mesh
+body_part_list: ['head', 'arm', 'shoes', 'shirt', 'pant', 'leg']
+log_name: 
+custom_postfix: 'aug'
+checkpoint_dir: 
+iden_ckpt_prefix: 
+skin_ckpt_prefix: 
+gpu_id: '0'
+vis_gpu: '0'
+seed: 
+
+# data setting
+dataset:
+  lib: mesh_dataset
+  joints_type: aug 
+  nParts: 
+  is_augmentation: True
+  j3d_factor: 0.05
+  meshpackage: trimesh # mpi-mesh, trimesh
+  downsample_method: COMA_downsample
+  normalization: False
+  dummy_node: True
+  dir_types: ['2ku', 'normal']
+
+# architecture setting
+model:
+  iden:
+    lib: atlasnet
+    name: IMG_AtlasNet_Humans
+  skin:
+    lib: human_net
+    name: HumanNetV2
+    sub_name: SpiralTLNetV2
+
+
+# training settings
+training:
+  batch_size: 16
+  valid_batch_size: 16
+  nepochs: 200
+  nepoch_ckpt: 10
+  skin_lr: 0.001
+  iden_lr: 0.0003
+  scheduler: True
+  decay_rate: 0.99
+  decay_steps: 1
+  weight_decay: 0.00005
+  log_interval: 20
+  train_vis_iter: 300
+  val_vis_iter: 40
+  num_workers: 4
+
+
+# loss weights
+loss:
+  w_l1_v: 50.
+  w_l1_z: 5.

@@ -1,0 +1,55 @@
+# general setting
+trainer_name: mesh
+exp_type: test
+data_root_dir: /mnt/projects/lyzhu/nba/data/release/training_data/mesh_release
+processed_verts_dir: ${data_root_dir}/release/kedrick
+base_log_dir: ../log/mesh
+log_name: mesh-aug-SpiralTLNetV2-IMG_AtlasNet_Humans-slr0.001-ilr0.0003-bn16-aug
+custom_postfix: ''
+checkpoint_dir: ${base_log_dir}/${log_name}/ckpt
+iden_ckpt_prefix: best
+skin_ckpt_prefix: best
+pose_base_log_dir: ../log/pose
+pose_log_name: pose-aug-bn64-lr0.002-3d2.0-hm10.0-bl0.5-ble20-3dm10.0-3dme10-cls0.2-dist0.4
+pose_checkpoint_path: ${pose_base_log_dir}/${pose_log_name}/ckpt/best_j3d_network.pth
+body_part_list: ['head', 'arm', 'shoes', 'shirt', 'pant', 'leg']
+gpu_id: '0'
+vis_gpu: '0'
+seed: 
+
+# data setting
+dataset:
+  lib: mesh_dataset
+  joints_type: aug 
+  nParts: 
+  is_augmentation: False
+  j3d_factor: 0.05
+  meshpackage: trimesh # mpi-mesh, trimesh
+  downsample_method: COMA_downsample
+  normalization: False
+  dummy_node: True
+  dir_types: ['2ku', 'normal']
+  hm_res: [64,64]
+
+# architecture setting
+model:
+  iden:
+    lib: atlasnet
+    name: IMG_AtlasNet_Humans
+  skin:
+    lib: human_net
+    name: HumanNetV2
+    sub_name: SpiralTLNetV2
+  pose:
+    lib: pose_net
+    num_layers: 50
+    heads:
+      hm: 
+      j3d: 
+    nClasses: 2
+
+
+# training settings
+training:
+  test_vis_iter: 100
+  num_workers: 4

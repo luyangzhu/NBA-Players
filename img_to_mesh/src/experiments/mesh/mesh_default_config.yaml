@@ -1,0 +1,67 @@
+# general setting
+trainer_name: 
+exp_type: 
+data_root_dir: 
+processed_verts_dir: 
+base_log_dir: 
+log_name: 
+custom_postfix: ''
+checkpoint_dir: 
+iden_ckpt_prefix: 
+skin_ckpt_prefix: 
+body_part_list: 
+gpu_id: 
+vis_gpu: 
+seed: 
+
+# demo setting
+demo:
+  inp_dir:
+  out_dir:
+
+# data setting
+dataset:
+  lib: 
+  joints_type: 
+  nParts: 
+  num_views: 
+  j3d_factor: 
+  meshpackage: 
+  downsample_method: 
+  normalization: 
+  dummy_node: 
+  dir_types: 
+
+# architecture setting
+model:
+  iden:
+    lib: 
+    name: 
+  skin:
+    lib: 
+    name: 
+    sub_name: 
+
+
+# training settings
+training:
+  batch_size: 
+  valid_batch_size: 
+  nepochs: 
+  nepoch_ckpt: 
+  skin_lr: 
+  iden_lr: 
+  scheduler: 
+  decay_rate: 
+  decay_steps: 
+  weight_decay: 
+  log_interval: 
+  train_vis_iter: 
+  val_vis_iter: 
+  num_workers: 
+
+
+# loss weights
+loss:
+  w_l1_v: 
+  w_l1_z: 

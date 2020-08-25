@@ -1,0 +1,26 @@
+# general setting
+trainer_name: pix2pix
+exp_type: demo
+base_log_dir: ../log/court_lines
+log_name: pix2pix-Pix2pixGen-bn16-lr0.0003-ce0.4
+custom_postfix: ''
+checkpoint_path: ${base_log_dir}/${log_name}/ckpt/best_network.pth
+gpu_id: '0'
+vis_gpu: '0'
+seed: 
+
+demo:
+  subdir: lbj_dunk
+  img_dir: ../../../data/${demo.subdir}/images
+  out_dir: ../../../results/${demo.subdir}/field_lines
+
+# data setting
+dataset:
+  rgb_res: [256,256]
+  
+
+# model setting
+model:
+  lib: pix2pix
+  name: Pix2pixGen
+
