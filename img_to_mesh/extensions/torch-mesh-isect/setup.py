@@ -72,10 +72,7 @@ bvh_extension = CUDAExtension('bvh_cuda', bvh_src_files,
 
 render_reqs = ['pyrender>=0.1.23', 'trimesh>=2.37.6', 'shapely']
 
-if torch.__version__ in ['1.5.0', '1.5.1']:
-    cmdclass={'build_ext': BuildExtension.with_options(use_ninja=False)}
-else:
-    cmdclass={'build_ext': BuildExtension}
+cmdclass={'build_ext': BuildExtension.with_options(use_ninja=False)}
 
 setup(name=NAME,
       version=about['__version__'],
